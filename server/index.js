@@ -1,9 +1,9 @@
 
 // server/index.js
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
 
 // Load environment variables (secrets)
 dotenv.config();
@@ -16,6 +16,10 @@ const app = express();
 // Middleware (The "Gatekeepers")
 app.use(cors('*')); // Allow all origins (for development)
 app.use(express.json()); // Parse JSON bodies
+
+// Routes
+import employeeRoutes from './routes/employeeRoutes.js';
+app.use('/api/employees', employeeRoutes);
 
 // Sample Route
 app.get('/', (req, res) => {

@@ -1,5 +1,5 @@
 // server/models/Employee.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const employeeSchema = new mongoose.Schema({
   name: {
@@ -47,4 +47,4 @@ const employeeSchema = new mongoose.Schema({
 
 const Employee = mongoose.model('Employee', employeeSchema);
 
-module.exports = Employee;
+export default Employee;
