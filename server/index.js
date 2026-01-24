@@ -1,12 +1,12 @@
-
 // server/index.js
+// Load environment variables FIRST (before any other imports)
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Now import everything else
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-
-// Load environment variables (secrets)
-dotenv.config();
 
 // Connect to Database
 connectDB();
@@ -14,7 +14,7 @@ connectDB();
 const app = express();
 
 // Middleware (The "Gatekeepers")
-app.use(cors('*')); // Allow all origins (for development)
+app.use(cors()); // Allow all origins (for development)
 app.use(express.json()); // Parse JSON bodies
 
 // Routes

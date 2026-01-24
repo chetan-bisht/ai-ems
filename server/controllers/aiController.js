@@ -2,16 +2,17 @@
 import { Groq } from "groq-sdk";
 import Employee from "../models/Employee.js";
 
-// Initialize Groq with your API Key
-console.log("GROQ_API_KEY:", process.env.GROQ_API_KEY);
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY || "" });
-
 /**
  * Find best employees for a project
  * @route POST /api/ai/recommend
  */
 const getBestMatch = async (req, res) => {
   try {
+    // Initialize Groq client here (after dotenv has loaded)
+    const apiKey = process.env.GROQ_API_KEY;
+    console.log("🔑 API Key loaded:", apiKey ? `${apiKey.substring(0, 10)}...` : "MISSING");
+    const groq = new Groq({ apiKey });
+    
     const { projectRequirements } = req.body;
 
     // 1. Fetch all available employees from DB
