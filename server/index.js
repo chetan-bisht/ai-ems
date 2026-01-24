@@ -19,7 +19,10 @@ app.use(express.json()); // Parse JSON bodies
 
 // Routes
 import employeeRoutes from './routes/employeeRoutes.js';
+import aiRoutes from './routes/aiRoutes.js';
+
 app.use('/api/employees', employeeRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Sample Route
 app.get('/', (req, res) => {
