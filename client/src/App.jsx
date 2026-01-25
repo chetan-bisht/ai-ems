@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
 import AddEmployee from './pages/AddEmployee';
+import AIMatcher from './pages/AIMatcher';
 
 import EditEmployee from './pages/EditEmployee';
 
@@ -16,7 +17,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/add" element={<AddEmployee />} />
           <Route path="/edit/:id" element={<EditEmployee />} />
-          <Route path="/ai-match" element={<h2 className="text-center mt-10">AI Match</h2>} />
+          <Route path="/ai-match" element={<AIMatcher />} />
         </Routes>
       </div>
     </div>
