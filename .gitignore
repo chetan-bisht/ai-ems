@@ -27,3 +27,4 @@ build/
 # Temporary files
 *.tmp
 push_output.txt
+PROJECT_EXPLANATION.md
