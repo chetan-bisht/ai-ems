@@ -5,28 +5,31 @@ An AI-powered Employee Management System that manages employee records and uses 
 ## Features
 
 - **Employee Management**: Create, read, update, and delete employee profiles
-- **AI-Powered Matching**: Use Gemini AI to find the best employees for project requirements
+- **AI-Powered Matching**: Use Groq AI (Llama 3.3) to find the best employees for project requirements
 - **Modern UI**: Clean, responsive interface built with React and Tailwind CSS
 - **RESTful API**: Well-structured backend with Express.js
 
 ## Tech Stack
 
 ### Frontend
-- React 18
+
+- React 19
 - Vite
 - Tailwind CSS
 - React Router
 - Axios
 
 ### Backend
+
 - Node.js
-- Express.js
+- Express.js (v5)
 - MongoDB with Mongoose
-- Google Gemini AI API
+- Groq AI (Llama 3.3)
 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v18+)
 - MongoDB database
 - Google Gemini API key
@@ -34,37 +37,43 @@ An AI-powered Employee Management System that manages employee records and uses 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/chetan-bisht/ai-ems.git
    cd ai-ems
    ```
 
 2. **Set up the backend**
+
    ```bash
    cd server
    npm install
    ```
 
 3. **Configure environment variables**
-   
+
    Create a `.env` file in the `server` directory:
+
    ```env
    MONGO_URI=your_mongodb_connection_string
-   GEMINI_API_KEY=your_gemini_api_key
+   GROQ_API_KEY=your_groq_api_key
    PORT=5000
    ```
 
 4. **Seed the database (optional)**
+
    ```bash
    node seed.js
    ```
 
 5. **Start the backend server**
+
    ```bash
    npm start
    ```
 
 6. **Set up the frontend**
+
    ```bash
    cd ../client
    npm install
@@ -99,6 +108,7 @@ ai-ems/
 ## API Endpoints
 
 ### Employees
+
 - `GET /api/employees` - Get all employees
 - `GET /api/employees/:id` - Get employee by ID
 - `POST /api/employees` - Create new employee
@@ -106,7 +116,8 @@ ai-ems/
 - `DELETE /api/employees/:id` - Delete employee
 
 ### AI Matching
-- `POST /api/ai/match` - Find best employees for project requirements
+
+- `POST /api/ai/recommend` - Find best employees for project requirements
 
 ## License
 
