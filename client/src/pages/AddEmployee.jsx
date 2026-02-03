@@ -1,4 +1,3 @@
-// client/src/pages/AddEmployee.jsx
 import { useState } from 'react';
 import api from '../api';
 import toast from 'react-hot-toast';
@@ -14,7 +13,7 @@ const AddEmployee = () => {
     role: '',
     department: '',
     experienceLevel: 'Mid',
-    skills: '' // We will accept a comma-separated string
+    skills: ''
   });
 
   const handleChange = (e) => {
@@ -24,13 +23,12 @@ const AddEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Convert "React, Node" string into ["React", "Node"] array
       const skillArray = formData.skills.split(',').map(s => s.trim());
 
       await api.post('/employees', { ...formData, skills: skillArray });
       
       toast.success("Employee Added Successfully!");
-      navigate('/'); // Go back to dashboard
+      navigate('/');
     } catch (error) {
       toast.error("Failed to add employee");
       console.error(error);

@@ -1,48 +1,46 @@
-// server/models/Employee.js
 import mongoose from 'mongoose';
 
 const employeeSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true, // Must have a name
+    required: true,
   },
   age: {
-    type: Number, // Age of the employee
+    type: Number,
     required: true,
   },
   email: {
-    type: String, // Email address
+    type: String,
     required: true,
     unique: true,
   },
   phoneNumber: {
-    type: String, // Contact number
+    type: String,
     required: true,
   },
   role: {
-    type: String, // Job title
+    type: String,
     required: true, 
   },
   department: {
-    type: String, // Job department
+    type: String,
     required: true, 
   },
   skills: {
-    type: [String], // Array of strings
+    type: [String],
     required: true,
   },
   experienceLevel: {
-    type: String, // e.g., Junior, Mid, Senior
+    type: String,
     enum: ['Junior', 'Mid', 'Senior'], 
     required: true,
   },
-  // We will track availability to see if they can take new projects
   isAvailable: {
     type: Boolean,
     default: true, 
   }
 }, {
-  timestamps: true // Automatically adds 'createdAt' and 'updatedAt'
+  timestamps: true
 });
 
 const Employee = mongoose.model('Employee', employeeSchema);

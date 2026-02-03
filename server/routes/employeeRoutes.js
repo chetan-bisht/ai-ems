@@ -3,7 +3,6 @@ import { getEmployees, getEmployeeById, addEmployee, updateEmployee, deleteEmplo
 
 const router = express.Router();
 
-// Routes
 router.get('/', getEmployees);
 router.get('/:id', getEmployeeById);
 router.post('/', addEmployee);

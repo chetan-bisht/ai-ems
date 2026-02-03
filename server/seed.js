@@ -1,4 +1,3 @@
-// server/seed.js
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Employee from './models/Employee.js';

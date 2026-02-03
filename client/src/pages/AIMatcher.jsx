@@ -1,4 +1,3 @@
-// client/src/pages/AIMatcher.jsx
 import { useState } from 'react';
 import api from '../api';
 import toast from 'react-hot-toast';
@@ -12,10 +11,9 @@ const AIMatcher = () => {
     if (!requirements) return toast.error("Please enter project details");
 
     setLoading(true);
-    setMatches([]); // Clear previous results
+    setMatches([]);
 
     try {
-      // Send the text to our Backend AI Route
       const res = await api.post('/ai/recommend', { projectRequirements: requirements });
       setMatches(res.data);
       toast.success("AI Analysis Complete!");
@@ -37,7 +35,6 @@ const AIMatcher = () => {
           Describe your project needs (skills, difficulty, etc.) and AI will find the best team.
         </p>
 
-        {/* Input Area */}
         <textarea
           className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none h-32"
           placeholder="Example: I need a senior developer who knows React and has experience with financial apps..."
@@ -45,19 +42,17 @@ const AIMatcher = () => {
           onChange={(e) => setRequirements(e.target.value)}
         />
 
-        {/* Search Button */}
         <button
           onClick={handleSearch}
           disabled={loading}
           className={`mt-4 w-full py-3 rounded-lg text-white font-bold text-lg transition
-            ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90'}
+            ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-linear-to-r from-blue-600 to-purple-600 hover:opacity-90'}
           `}
         >
           {loading ? "AI is thinking... 🤖" : "Find Best Matches 🔍"}
         </button>
       </div>
 
-      {/* Results Section */}
       {matches.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-2xl font-bold text-gray-700">Top Recommendations</h3>
@@ -81,3 +76,4 @@ const AIMatcher = () => {
 };
 
 export default AIMatcher;
+

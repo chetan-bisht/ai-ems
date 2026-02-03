@@ -1,4 +1,3 @@
-// client/src/pages/EditEmployee.jsx
 import { useState, useEffect } from 'react';
 import api from '../api';
 import toast from 'react-hot-toast';

@@ -1,8 +1,5 @@
-// server/controllers/employeeController.js
 import Employee from '../models/Employee.js';
 
-// @desc    Get all employees
-// @route   GET /api/employees
 const getEmployees = async (req, res) => {
   try {
     const employees = await Employee.find({});
@@ -12,11 +9,9 @@ const getEmployees = async (req, res) => {
   }
 };
 
-// @desc    Get employee by ID
-// @route   GET /api/employees/:id
 const getEmployeeById = async (req, res) => {
   try {
-    const employee = await Employee.findById(req.params.id);// Find employee by ID from request params
+    const employee = await Employee.findById(req.params.id);
     if (!employee) {
       return res.status(404).json({ message: 'Employee not found' });
     }
@@ -26,8 +21,6 @@ const getEmployeeById = async (req, res) => {
   }
 };
 
-// @desc    Add a new employee
-// @route   POST /api/employees
 const addEmployee = async (req, res) => {
   try {
     const { name, age, email, phoneNumber, role, department, skills, experienceLevel } = req.body;
@@ -48,8 +41,6 @@ const addEmployee = async (req, res) => {
   }
 };
 
-// @desc    Update an employee
-// @route   PUT /api/employees/:id
 const updateEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -62,8 +53,6 @@ const updateEmployee = async (req, res) => {
   }
 };
 
-// @desc    Delete an employee
-// @route   DELETE /api/employees/:id
 const deleteEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndDelete(req.params.id);
