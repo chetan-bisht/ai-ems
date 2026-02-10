@@ -1,0 +1,13 @@
+{
+  "name": "ai-ems-root",
+  "version": "1.0.0",
+  "description": "Root for AI-EMS",
+  "scripts": {
+    "build": "npm install --prefix client && npm run build --prefix client && npm install --prefix server",
+    "start": "node server/index.js",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
