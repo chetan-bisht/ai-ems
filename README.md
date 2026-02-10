@@ -1,6 +1,12 @@
 # AI Employee Management System
 
-An AI-powered Employee Management System that manages employee records and uses Google Gemini AI to intelligently match employees to project requirements.
+An AI-powered Employee Management System that manages employee records and uses Groq AI (Llama 3.3) to intelligently match employees to project requirements.
+
+## 🚀 Live Demo
+
+**[View Live Application](https://ai-staff-manager.onrender.com/)**
+
+> **Note:** The app is hosted on Render's free tier. If the app hasn't been accessed recently, the first load may take 30-50 seconds as the server wakes up.
 
 ## Features
 
@@ -31,8 +37,8 @@ An AI-powered Employee Management System that manages employee records and uses 
 ### Prerequisites
 
 - Node.js (v18+)
-- MongoDB database
-- Google Gemini API key
+- MongoDB database (MongoDB Atlas recommended for cloud deployment)
+- Groq API key ([Get one here](https://console.groq.com/))
 
 ### Installation
 
@@ -118,6 +124,40 @@ ai-ems/
 ### AI Matching
 
 - `POST /api/ai/recommend` - Find best employees for project requirements
+
+## 🌐 Deployment
+
+This project is deployed on [Render](https://render.com) using a unified deployment approach where both frontend and backend are served from a single web service.
+
+### Deploy to Render
+
+1. **Set up MongoDB Atlas** (free tier available)
+   - Create a cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   - Get your connection string
+
+2. **Deploy to Render**
+   - Fork/Clone this repository
+   - Create a new Web Service on Render
+   - Connect your GitHub repository
+   - Configure the following:
+     - **Build Command:** `npm run build`
+     - **Start Command:** `npm start`
+     - **Environment Variables:**
+       - `MONGO_URI`: Your MongoDB Atlas connection string
+       - `GROQ_API_KEY`: Your Groq API key
+       - `NODE_ENV`: `production`
+
+3. **Deploy!** Render will automatically build and deploy your application.
+
+### Architecture
+
+The deployment uses a monorepo structure where:
+
+- The root `package.json` orchestrates the build process
+- Frontend (React/Vite) is built into static files
+- Backend (Express) serves both the API and the static frontend files
+- All requests to `/api/*` are handled by the Express API
+- All other requests serve the React application
 
 ## License
 
