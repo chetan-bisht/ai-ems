@@ -29,8 +29,8 @@ if (process.env.NODE_ENV === 'production') {
   const clientDist = path.join(rootDir, 'client/dist');
   app.use(express.static(clientDist));
 
-  // Express 5 requires (.*) for wildcard matching
-  app.get('(.*)', (req, res, next) => {
+  // Catch-all handler for client-side routing
+  app.use((req, res, next) => {
     // If it's an API route that wasn't found, don't serve index.html
     if (req.path.startsWith('/api')) {
       return next();
