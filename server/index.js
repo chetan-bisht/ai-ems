@@ -4,7 +4,15 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
+import employeeRoutes from './routes/employeeRoutes.js';
+import aiRoutes from './routes/aiRoutes.js';
+
+// ES Module fix for __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
 
 connectDB();
 
@@ -13,19 +21,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-import employeeRoutes from './routes/employeeRoutes.js';
-import aiRoutes from './routes/aiRoutes.js';
-
 app.use('/api/employees', employeeRoutes);
 app.use('/api/ai', aiRoutes);
 
-const __dirname = path.resolve();
-
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/dist')));
+  // Static files are in the root's client/dist folder
+  app.use(express.static(path.join(rootDir, 'client/dist')));
 
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+    res.sendFile(path.resolve(rootDir, 'client', 'dist', 'index.html'))
   );
 } else {
   app.get('/', (req, res) => {
