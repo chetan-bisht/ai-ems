@@ -26,11 +26,16 @@ app.use('/api/ai', aiRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   // Static files are in the root's client/dist folder
-  app.use(express.static(path.join(rootDir, 'client/dist')));
+  const clientDist = path.join(rootDir, 'client/dist');
+  app.use(express.static(clientDist));
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(rootDir, 'client', 'dist', 'index.html'))
-  );
+  app.get('*', (req, res, next) => {
+    // If it's an API route that wasn't found, don't serve index.html
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.resolve(clientDist, 'index.html'));
+  });
 } else {
   app.get('/', (req, res) => {
     res.send('API is running...');
